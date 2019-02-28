@@ -154,6 +154,7 @@ pub fn run(target: &Target,
     docker
         .args(&["-e", &format!("CROSS_RUNNER={}", runner.unwrap_or_else(|| String::new()))])
         .args(&["-v", &format!("{}:/xargo", xargo_dir.display())])
+        .args(&["-v", &format!("{}/git:/cargo/git", cargo_dir.display())])
         .args(&["-v", &format!("{}/registry:/cargo/registry", cargo_dir.display())])
         .args(&["-v", &format!("{}:/project:ro", root.display())])
         .args(&["-v", &format!("{}:/rust:ro", sysroot.display())])
